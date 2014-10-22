@@ -1,0 +1,14 @@
+8b72c23d3915ac9850667c12576fbbfe *DESCRIPTION
+4083ffabf60b48115a48be97c600fa80 *NAMESPACE
+fd08fc7c66eb67cf36f043a7b2fbc1d1 *R/binomialfit.R
+d519b6a1ab895d580be286dedce22142 *R/gaussianfit.R
+209ed39b68ad1927614c1643b94e69a6 *R/glmvsd.R
+1c29d10e5d3c8c0a3a42ba9b4f90fc48 *R/logitARM.R
+1410e5261c9bc6f8aa250db40eaf0b18 *R/logitBIC.R
+8b031a9625377183fc691bd0719c7814 *R/lsARM.R
+347fda0ad8db28419359be880c748c4e *R/lsBIC.R
+aaf0200f62b68dc38ea2ea7edb4ca783 *R/modelfit.R
+5f1b433462bc9f9c0a2de10bd5f067e6 *R/stability.test.R
+fc88b9d2c1d83004850b5b3afba18a48 *R/tools.R
+2629c89facf75ff527c267f076cc56fb *man/glmvsd.Rd
+dc3b7dab501c2058def27a51d4e62cde *man/stability.test.Rd
