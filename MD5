@@ -1,12 +1,12 @@
-982c05f3ff5ce2fe6590967456f9e8e8 *ChangeLog
-a7a422b09763c44f8fb234b9aa0b77f9 *DESCRIPTION
+39b3cfae9021be8a8da3c18b65a7bd4a *ChangeLog
+fe946fdd440ab1a89258a1c2874fd6f4 *DESCRIPTION
 4083ffabf60b48115a48be97c600fa80 *NAMESPACE
 fd08fc7c66eb67cf36f043a7b2fbc1d1 *R/binomialfit.R
 d519b6a1ab895d580be286dedce22142 *R/gaussianfit.R
 72c3b3eaae3075bca42a2758de137c43 *R/glmvsd.R
 d5c3e721d9c597d2f93a51bf827dcd3e *R/logitARM.R
 f0375c6804fc1e7a6baef66ce5d751be *R/logitBIC.R
-30e3ee3f545e84dc77c8e13242a92cae *R/lsARM.R
+594c7c09b4889aa0c2a26980d1104487 *R/lsARM.R
 347fda0ad8db28419359be880c748c4e *R/lsBIC.R
 aaf0200f62b68dc38ea2ea7edb4ca783 *R/modelfit.R
 5f1b433462bc9f9c0a2de10bd5f067e6 *R/stability.test.R
