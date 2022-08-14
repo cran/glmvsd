@@ -2,7 +2,7 @@
 \alias{glmvsd}
 \title{Variable Selection Deviation (VSD)}
 \description{
-The package calculate the variable selection deviation (VSD) to measure the uncertainty of the selection in terms of inclusion of predictors in the model.
+The package calculates the variable selection deviation (VSD) to measure the uncertainty of the selection in terms of inclusion of predictors in the model.
 }
 \usage{
 glmvsd(x, y, n_train = ceiling(n/2), no_rep = 100,
@@ -41,17 +41,22 @@ See Reference section.
 
 \value{
 A "glmvsd" object is retured. The components are:
+\item{candidate_models_cleaned}{Cleaned candidate models: the duplicated candidate models are cleaned; When computing VSD weights using AIC and BIC, the models with more than n-2 variables are removed (n is the number of observaitons); When computing VSD weights using ARM, the models with more than n_train-2 variables  are removed (n_train is the number of training observations).}
  \item{VSD}{Variable selection deviation (VSD) value.}
  \item{VSD_minus}{The lower VSD value of \code{model_check}, representing the number of predictors in the model (\code{model_check}) not quite justified at the present sample size.}
  \item{VSD_plus}{The upper VSD value of \code{model_check} model, representing the number of predictors missed by the model (\code{model_check}).}
+ \item{Precision}{A vector of precision values computed using each candidate model.}
+ \item{Recall}{A vector of recall values computed using each candidate model.}
+ \item{Fmeasure}{F-measure for the given model under check.}
+ \item{Gmeasure}{G-measure for the given model under check.}
+ \item{sd.F}{Estimated standard deviation of F-measure for the given model under check.}
+ \item{sd.G}{Estimated standard deviation of G-measure for the given model under check.}
  \item{weight}{The weight for each candidate model.}
- \item{DIFF}{Counting the variable differences between candidate models and \code{model_check}.}
-\item{candidate_models_cleaned}{Cleaned candidate models: the duplicated candidate models are cleaned; When computing VSD weights using AIC and BIC, the models with more than n-2 variables are removed (n is the number of observaitons); When computing VSD weights using ARM, the models with more than n_train-2 variables  are removed (n_train is the number of training observations).}
+
 }
 
 \references{
 Nan, Y. and Yang, Y. (2013), "Variable Selection Diagnostics Measures for High-dimensional Regression," \emph{Journal of Computational and Graphical Statistics}, 23:3, 636-656.\cr
-\url{http://dx.doi.org/10.1080/10618600.2013.829780}\cr
 BugReport: \url{https://github.com/emeryyi/glmvsd}\cr
 }
 

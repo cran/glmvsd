@@ -80,10 +80,15 @@ glmvsd <- function(x, y, n_train = ceiling(n/2), no_rep = 100,
 	  VSD <- rep(NA, no_checkmod)
 	  VSD_minus <- rep(NA, no_checkmod)
 	  VSD_plus <- rep(NA, no_checkmod)
+	  Precision <- matrix(NA, no_checkmod, length(weight))
+	  Recall <- matrix(NA, no_checkmod, length(weight))
 	  Fmeasure <- rep(NA, no_checkmod)
 	  Gmeasure <- rep(NA, no_checkmod)
+	  sd.F <- rep(NA, no_checkmod)
+	  sd.G <- rep(NA, no_checkmod)
 	  # size of m0
 	  model_check_size <- rowSums(model_check)
+	  if(any(model_check_size==0)) warning("The Model under check is a null model. F- and G-measure results will be NA")
 	  # size of mk
 	  candidate_models_size <- rowSums(candidate_models)
 	  # start the loop
@@ -98,17 +103,21 @@ glmvsd <- function(x, y, n_train = ceiling(n/2), no_rep = 100,
 	    VSD_plus[mindex] <- sum(weight*diff_plus)  # false negative 
 	    VSD_minus[mindex] <- sum(weight*diff_minus)  # false positive
 	    # compute F measure and G measure using precision and recall
-	    Prcision <- (model_check_size[mindex]-diff_minus)/model_check_size[mindex]
-	    Recall <- (model_check_size[mindex]-diff_minus)/candidate_models_size
-	    Fmeasure_tmp <- 2*(Prcision*Recall)/(Prcision+Recall)
-	    Gmeasure_tmp <- sqrt(Prcision*Recall)
+	    Precision[mindex,] <- (model_check_size[mindex]-diff_minus)/model_check_size[mindex]
+	    Recall[mindex,] <- (model_check_size[mindex]-diff_minus)/candidate_models_size
+	    Fmeasure_tmp <- 2*(model_check_size[mindex]-diff_minus)/(model_check_size[mindex]+candidate_models_size)
+	    Gmeasure_tmp <- (model_check_size[mindex]-diff_minus)/sqrt(model_check_size[mindex]*candidate_models_size)
 	    Fmeasure[mindex] <- sum(weight*Fmeasure_tmp, na.rm = TRUE)
 	    Gmeasure[mindex] <- sum(weight*Gmeasure_tmp, na.rm = TRUE)
+		 sd.F[mindex] <- sqrt(sum(weight*(Fmeasure_tmp-Fmeasure[mindex])^2, na.rm = TRUE))
+		 sd.G[mindex] <- sqrt(sum(weight*(Gmeasure_tmp-Gmeasure[mindex])^2, na.rm = TRUE))
 	  }
     # output 
-    object <- list(candidate_models_cleaned = candidate_models, VSD = VSD, VSD_minus = VSD_minus, VSD_plus = VSD_plus,  
+    object <- list(candidate_models_cleaned = candidate_models, VSD = VSD, VSD_minus = VSD_minus, VSD_plus = VSD_plus,
+					Precision = Precision, Recall = Recall,
 	    			Fmeasure = Fmeasure, Gmeasure = Gmeasure,
-                   weight = weight)
+					sd.F = sd.F, sd.G = sd.G,
+              weight = weight)
     class(object) <- "glmvsd"
     object
 }
